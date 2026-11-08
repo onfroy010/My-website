@@ -2,7 +2,8 @@ from flask import Flask, request, redirect, session, render_template_string
 import sqlite3, os
 
 app = Flask(__name__)
-app.secret_key = "change-this-to-something-secret-123"
+app.secret_key = os.environ.get("SECRET_KEY", "change-this-to-something-secret-123")
+ADMIN_USERNAME = "admin"  # Sign up with this exact username to access /admin
 
 # Create database
 def init_db():
